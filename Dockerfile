@@ -9,6 +9,17 @@ RUN apt-get -y install python3-pip
 
 RUN pip install torch==$TORCH_VERSION+$CUDA_VERSION torchvision==0.11.0+$CUDA_VERSION torchaudio==0.10.0 -f https://download.pytorch.org/whl/torch_stable.html
 
+RUN apt-get install -y \
+    wget\
+    curl \
+    ca-certificates \
+    vim \
+    sudo \
+    git \
+    bzip2 \
+    libx11-6 \
+ && rm -rf /var/lib/apt/lists/*
+
 
 
 RUN mkdir /app
@@ -18,6 +29,7 @@ WORKDIR /app
 RUN mkdir /home/user
 ENV HOME=/home/user
 RUN chmod 777 /home/user
+
 
 
 CMD ["python3"]
