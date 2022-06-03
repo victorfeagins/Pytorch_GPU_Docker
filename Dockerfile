@@ -31,9 +31,6 @@ ENV HOME=/home/user
 RUN chmod 777 /home/user
 
 
-# Install HDF5 Python bindings.
-#RUN pip install --no-cache-dir h5py==2.8.0
-#RUN pip install h5py-cache==1.0
 
 # Install TorchNet, a high-level framework for PyTorch.
 RUN pip install --no-cache-dir torchnet==0.0.4
@@ -50,6 +47,15 @@ RUN pip install --no-index torch-spline-conv -f https://data.pyg.org/whl/torch-$
  && pip install --no-cache-dir --no-deps sentence-transformers==2.2.0 sentencepiece==0.1.96 \
  && pip install --no-cache-dir nltk==3.7 ipykernel==6.13.0 \
  && pip install --no-cache-dir dgl==0.6.1
+
+#RUN sudo apt-get update && sudo apt-get install -y --no-install-recommends \
+#    libgtk2.0-0 \
+#    libcanberra-gtk-module \
+# && sudo rm -rf /var/lib/apt/lists/*
+
+# Install HDF5 Python bindings.
+RUN pip install h5py
+RUN pip install h5py-cache
 
 
 CMD ["python3"]
