@@ -31,5 +31,25 @@ ENV HOME=/home/user
 RUN chmod 777 /home/user
 
 
+# Install HDF5 Python bindings.
+#RUN pip install --no-cache-dir h5py==2.8.0
+#RUN pip install h5py-cache==1.0
+
+# Install TorchNet, a high-level framework for PyTorch.
+RUN pip install --no-cache-dir torchnet==0.0.4
+
+# Install Requests, a Python library for making HTTP requests.
+RUN pip install --no-cache-dir requests==2.19.1
+
+# Install Graphviz.
+RUN pip install --no-cache-dir graphviz==0.20
+
+RUN pip install --no-index torch-spline-conv -f https://data.pyg.org/whl/torch-$TORCH_VERSION+$CUDA_VERSION.html \
+ && pip install torch-geometric \
+ && pip install --no-cache-dir pytorch-lightning==1.4.1  transformers==4.19.2\
+ && pip install --no-cache-dir --no-deps sentence-transformers==2.2.0 sentencepiece==0.1.96 \
+ && pip install --no-cache-dir nltk==3.7 ipykernel==6.13.0 \
+ && pip install --no-cache-dir dgl==0.6.1
+
 
 CMD ["python3"]
